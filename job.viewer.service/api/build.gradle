@@ -1,0 +1,11 @@
+
+plugins {
+	id 'java'
+}
+
+
+dependencies {
+	implementation 'com.ford.cloudnative:spring-base-api'
+	implementation 'org.hibernate:hibernate-validator'
+	compileOnly 'org.projectlombok:lombok'
+}

@@ -1,0 +1,41 @@
+plugins {
+  id 'org.springframework.boot' version '1.5.13.RELEASE' apply false
+  id 'gradle-boost' version '1.0.0'
+}
+
+
+def buildVersion = gradleBoost.fn.gitVersion()
+println "Build Version = ${buildVersion ?: '[none]'}"
+
+
+subprojects {
+    group = 'com.ford.mss.gotd.ogmf'
+    version = buildVersion
+
+
+    // Gradle Boost
+    apply plugin: 'gradle-boost'
+    gradleBoost {
+        projectName = gradleBoost.fn.qualifiedProjectName()
+    }
+
+    // Dependency Versioning
+    apply plugin: 'io.spring.dependency-management'
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Edgware.RELEASE'
+            mavenBom 'io.pivotal.spring.cloud:spring-cloud-services-dependencies:1.5.0.RELEASE'
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:1.5.13.RELEASE'
+            mavenBom 'com.ford.cloudnative:spring-base-dependencies:1.0.2-RELEASE'
+        }
+        dependencies {
+            dependency 'com.ford.cloudnative:spring-base-test:1.0.1-RELEASE'
+
+            dependency 'io.springfox:springfox-swagger2:2.8.0'
+            dependency 'io.springfox:springfox-swagger-ui:2.8.0'
+
+            dependency 'org.flywaydb:flyway-core:4.2.0'
+            dependency 'com.microsoft.sqlserver:mssql-jdbc:6.2.2.jre8'
+        }
+    }
+}

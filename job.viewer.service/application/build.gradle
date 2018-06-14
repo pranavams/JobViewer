@@ -1,0 +1,43 @@
+
+plugins {
+	id 'java'
+	id 'maven-publish'
+}
+
+apply plugin: 'org.springframework.boot'
+
+
+dependencies {
+	implementation project(':api')
+
+	//cloud native
+	implementation 'com.ford.cloudnative:spring-base-app'
+	implementation 'com.ford.cloudnative:spring-base-api'
+
+	//web
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'io.springfox:springfox-swagger2'
+	implementation 'io.springfox:springfox-swagger-ui'
+
+	// Database ***
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.hibernate:hibernate-java8'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	implementation 'com.h2database:h2'
+	implementation 'com.microsoft.sqlserver:mssql-jdbc'
+	
+	implementation 'org.apache.httpcomponents:httpclient:4.5'
+
+	//other
+	compileOnly 'org.projectlombok:lombok'
+
+	/*********** TEST ***********/
+
+	testImplementation 'com.ford.cloudnative:spring-base-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'junit:junit'
+}
+
+
+

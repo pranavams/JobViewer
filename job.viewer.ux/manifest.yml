@@ -1,0 +1,7 @@
+---
+applications:
+- name: pcf-dev-static-buildpack-example
+  memory: 64M
+  disk: 64M
+  instances: 1
+  buildpack: staticfile_buildpack
